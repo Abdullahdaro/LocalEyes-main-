@@ -40,4 +40,3 @@ mongoose.connect(process.env.REACT_APP_CONNECTION_URL)
 
 
 
-// chug was here looking at the screen :) 
