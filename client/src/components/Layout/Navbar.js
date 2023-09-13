@@ -45,29 +45,10 @@ function Navbar() {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
 
-    //Google success login
-    const googleSuccess =  async (res) => {
-        const result = jwt_decode(res?.credential); 
-        const token = res?.credential;
-        
-        try {
-            dispatch({ type: 'AUTH', data: { result, token } });
-            setUser(JSON.parse(localStorage.getItem('profile')));
-            history.push('/')
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
-    //Google Failure login
-    const googleFailure = () => {
-        console.log("Google Sign In Failed")
-    };
-
     //logging out google client
     const logout = () => {
         dispatch({ type: LOGOUT })
-        /* history.push('/auth') */
+        history.push('/')
         setUser(null);
     };
 
@@ -152,15 +133,15 @@ function Navbar() {
                                             <p  style={{fontSize: '15px'}}>Mylist</p>
                                         </Link>
                                     </MenuItem>
-                                    <MenuItem onClick={logout}>
-                                    <ListItemIcon>
-                                        <Link className={classes.linkAvatar} >
-                                            <FiLogOut fontSize="miduim" />
-                                        </Link>
-                                    </ListItemIcon>
-                                        <Link className={classes.linkAvatar} >
-                                        <p style={{fontSize: '15px'}}>Logout</p>
-                                        </Link>
+                                    <MenuItem >
+                                        <ListItemIcon>
+                                            <Link to="/" className={classes.linkAvatar} onClick={logout} >
+                                                <FiLogOut fontSize="miduim" />
+                                            </Link>
+                                        </ListItemIcon>
+                                            <Link to="/" className={classes.linkAvatar} onClick={logout}>
+                                            <p style={{fontSize: '15px'}}>Logout</p>
+                                            </Link>
                                     </MenuItem>
                                 </Menu>                               
                             </>
